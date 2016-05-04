@@ -1,0 +1,32 @@
+'''
+How can brewer maximize profits on the following criteria
+
+Production limited by scarce resources: corn, hops, barley malt
+Recipes for ale and beer require different proportions of resources.
+
+Beverage        Corn(pounds)    Malt(pounds)    Hops(ounces)  Profit($)
+
+Beer (barrel)   15              4               20              23
+Ale (barrel)    5               4               35              13
+
+constraint      480             160             1190
+
+max     13A + 23B
+
+s. t.   5A + 15B    <= 480
+        4A + 4B     <= 160
+        35A + 20B   <= 1190
+        
+A , B # 0
+
+'''
+
+from scipy.optimize import linprog
+
+c = [13, 23]
+A = [[5, 15], [4, 4], [35, 20]]
+b = [480, 160, 1190]
+
+res = linprog(c, A_ub=A, b_ub=b)
+
+print(res)
